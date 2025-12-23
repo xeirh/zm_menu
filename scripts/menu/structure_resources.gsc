@@ -3,43 +3,36 @@
 #include scripts\menu\structure;
 #include scripts\menu\utilities;
 
-//
 set_menu( menu )
 {
     self.menu = menu;
 }
 
-//
 get_menu()
 {
     return self.menu;
 }
 
-//
 set_title( title )
 {
     self.menu_title = title;
 }
 
-//
 get_title()
 {
     return self.menu_title;
 }
 
-//
 set_cursor( index )
 {
     self.cursor[ self get_menu() ] = index;
 }
 
-//
 get_cursor()
 {
     return self.cursor[ self get_menu() ];
 }
 
-//
 is_opened()
 {
     if( !isdefined( self.menu_opened ) )
@@ -48,7 +41,6 @@ is_opened()
     return self.menu_opened;
 }
 
-//
 is_locked()
 {
     if( !isdefined( self.menu_locked ) )
@@ -57,7 +49,6 @@ is_locked()
     return self.menu_locked;
 }
 
-//
 add_menu( title )
 {
     self.structure = [];
@@ -68,7 +59,6 @@ add_menu( title )
     self set_title( title );
 }
 
-//
 add_option( title, description, operation, parameters )
 {
     structure = spawnstruct();
@@ -80,7 +70,6 @@ add_option( title, description, operation, parameters )
     self.structure[ self.structure.size ] = structure;
 }
 
-//
 execute_operation( operation, parameters )
 {
     if( !isdefined( operation ) )
