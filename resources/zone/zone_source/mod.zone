@@ -1,0 +1,8 @@
+>game,t6
+
+script,scripts/menu/structure_resources.gsc
+script,scripts/menu/structure.gsc
+script,scripts/menu/utilities.gsc
+
+script,scripts/preload.gsc
+script,scripts/preprocessing.gsh

@@ -3,7 +3,6 @@
 #include scripts\menu\structure_resources;
 #include scripts\menu\utilities;
 
-//
 display_title()
 {
     if( !isdefined( self.title ) )
@@ -12,7 +11,6 @@ display_title()
         self.title set_text( self get_title() );
 }
 
-//
 display_description()
 {
     if( isdefined( self.description ) && !self.description_enabled || isdefined( self.description ) && !isdefined( self.structure[ self get_cursor() ].description ) )

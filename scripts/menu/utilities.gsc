@@ -1,6 +1,5 @@
 // https://github.com/xeirh
 
-//
 ternary_compare( condition, result_1, result_2 )
 {
     if( condition )
@@ -9,7 +8,6 @@ ternary_compare( condition, result_1, result_2 )
     return result_2;
 }
 
-//
 auto_archive()
 {
     if( !isdefined( self.element_result ) )
@@ -18,7 +16,6 @@ auto_archive()
     return self.element_result > 19;
 }
 
-//
 create_text( text, font, font_scale, point, relative_point, x_offset, y_offset, color, alpha )
 {
     element = self maps\mp\gametypes_zm\_hud_util::createfontstring( font, font_scale );
@@ -37,7 +34,6 @@ create_text( text, font, font_scale, point, relative_point, x_offset, y_offset, 
     return element;
 }
 
-//
 create_shader( shader, point, relative_point, x_offset, y_offset, width, height, color, alpha )
 {
     element = self maps\mp\gametypes_zm\_hud_util::createicon( shader, width, height );
@@ -56,13 +52,17 @@ create_shader( shader, point, relative_point, x_offset, y_offset, width, height,
     return element;
 }
 
-//
 set_text( text )
 {
+    if( isint( text ) || isfloat( text ) )
+    {
+        self setvalue( text );
+        return;
+    }
+
     self settext( text );
 }
 
-//
 set_shader( shader, width, height )
 {
     if( !isdefined( shader ) || !isdefined( width ) || !isdefined( height ) )
@@ -75,7 +75,6 @@ set_shader( shader, width, height )
     self setshader( shader, width, height );
 }
 
-//
 x_offset( x_offset, time )
 {
     if( !isdefined( time ) )
@@ -90,7 +89,6 @@ x_offset( x_offset, time )
         wait time;
 }
 
-//
 y_offset( y_offset, time )
 {
     if( !isdefined( time ) )
@@ -105,22 +103,19 @@ y_offset( y_offset, time )
         wait time;
 }
 
-//
 destroy_element()
 {
-    self destroy();
-
     if( isdefined( self.anchor ) )
         self.anchor.element_result--;
+
+    self maps\mp\gametypes_zm\_hud_util::destroyelem();
 }
 
-//
 get_players()
 {
     return level.players;
 }
 
-//
 get_zombies( species )
 {
     if( !isdefined( species ) )
@@ -129,14 +124,12 @@ get_zombies( species )
     return getaispeciesarray( level.zombie_team, species );
 }
 
-//
 precision( value, decimal_places )
 {
     factor = pow( 10, decimal_places );
     return ( int( ( float( value ) * factor ) ) / factor );
 }
 
-//
 calculate_distance( start_point, end_point )
 {
     return ( distance( start_point, end_point ) * 0.0254 );

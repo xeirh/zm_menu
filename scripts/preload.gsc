@@ -4,11 +4,9 @@
 #include scripts\menu\structure;
 #include scripts\menu\utilities;
 
-//
 main()
 {}
 
-//
 init()
 {
     level.unique_string = [];
@@ -18,18 +16,15 @@ init()
     level initial_precache();
 }
 
-//
 initial_callback()
 {
     maps\mp\zombies\_zm_utility::onplayerconnect_callback();
     maps\mp\zombies\_zm_utility::onplayerdisconnect_callback();
 }
 
-//
 initial_precache()
 {}
 
-//
 initial_variable()
 {
     self.cursor = [];
@@ -41,7 +36,7 @@ initial_variable()
     self.option_spacing = 16;
     self.x_offset = -400;
     self.y_offset = 80;
-    self.width = 0;
+    self.width = 200;
     self.scrolling_buffer = 0.08;
 
     self.gestures_enabled = true;
@@ -56,7 +51,6 @@ initial_variable()
     self set_title( self get_menu() );
 }
 
-//
 initial_observer()
 {
     self endon( "disconnect" );
@@ -69,6 +63,8 @@ initial_observer()
             {
                 if( self.gestures_enabled )
                     self playsoundtoplayer( "", self );
+
+                self open_menu();
 
                 while( self actionslotonebuttonpressed() )
                     wait 0.18;
@@ -84,6 +80,32 @@ initial_observer()
                     self playsoundtoplayer( ternary_compare( isdefined( self.previous[ ( self.previous.size - 1 ) ] ), "", "" ), self );
 
                 while( self actionslottwobuttonpressed() )
+                    wait 0.18;
+            }
+            else if( self attackbuttonpressed() && !self adsbuttonpressed() || !self attackbuttonpressed() && self adsbuttonpressed() )
+            {
+                if( isdefined( self.structure[ cursor ] ) && self.structure.size > 1 )
+                {
+                    if( self.gestures_enabled )
+                        self playsoundtoplayer( "", self );
+
+                    course = ternary_compare( self attackbuttonpressed(), 1, -1 );
+                }
+
+                wait self.scrolling_buffer;
+            }
+            else if( self usebuttonpressed() )
+            {
+                if( isdefined( self.structure[ cursor ] ) )
+                {
+                    if( isdefined( self.structure[ cursor ].operation ) )
+                    {
+                        if( self.gestures_enabled )
+                            self playsoundtoplayer( "", self );
+                    }
+                }
+
+                while( self usebuttonpressed() )
                     wait 0.18;
             }
         }
