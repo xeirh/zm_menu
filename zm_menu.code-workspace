@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"name": "minimalist",
+			"path": "."
+		},
+		{
+			"name": "references",
+			"path": ""
+		}
+	],
+	"settings": {
+		"window.title": "Black Ops II: Zombies",
+
+		"gsc.ignoredFilePaths": [
+			"common_scripts",
+			"maps"
+		]
+	},
+	"extensions": {
+		"recommendations": [
+			"mjkzy.vscode-gsc-ultimate"
+		]
+	}
+}
